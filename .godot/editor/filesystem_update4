@@ -1,0 +1,7 @@
+res://entities/unit/unit.tscn
+res://shaders/wind waker water.gdshader
+res://entities/unit/player/player.tscn
+res://entities/level/tile_map_layer_ground.gd
+res://entities/level/level_1.tscn
+res://entities/unit/player/player.gd
+res://entities/level/level_1.gd

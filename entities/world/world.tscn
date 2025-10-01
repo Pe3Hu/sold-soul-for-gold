@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpq0g6jrlkuea"]
+
+[ext_resource type="Script" uid="uid://b12ycqhctu6gd" path="res://entities/world/world.gd" id="1_sbgiu"]
+[ext_resource type="PackedScene" uid="uid://cv4haimmbokyp" path="res://entities/level/level_1.tscn" id="2_mrp82"]
+[ext_resource type="PackedScene" uid="uid://ck2e8j7awyhqk" path="res://entities/unit/player/player.tscn" id="3_db8ab"]
+[ext_resource type="PackedScene" uid="uid://bx08370sfhydj" path="res://entities/camera/camera.tscn" id="4_hl0m3"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_sbgiu")
+
+[node name="Level1" parent="." instance=ExtResource("2_mrp82")]
+
+[node name="Player" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_db8ab")]
+unique_name_in_owner = true
+level = NodePath("../Level1")
+sprite_size = Vector2i(16, 16)
+speed = 160.0
+
+[node name="Camera2D" parent="Player" node_paths=PackedStringArray("player") instance=ExtResource("4_hl0m3")]
+player = NodePath("..")
+
+[node name="Enemies" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
