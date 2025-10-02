@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://buov6068kpnaj"]
+[gd_scene load_steps=11 format=3 uid="uid://buov6068kpnaj"]
 
 [ext_resource type="Script" uid="uid://cu2ls4hwd0byj" path="res://entities/unit/unit.gd" id="1_tkh0x"]
 [ext_resource type="Texture2D" uid="uid://wnbdwevcankt" path="res://assets/images/sprites/player.png" id="2_1bv0a"]
+[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/Shadow.png" id="2_p0kfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5idxs"]
 size = Vector2(14, 4)
@@ -11,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +29,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +46,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +63,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -79,7 +80,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -106,7 +107,10 @@ script = ExtResource("1_tkh0x")
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_5idxs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_p0kfm")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_1bv0a")
 offset = Vector2(0, -8)
 hframes = 4

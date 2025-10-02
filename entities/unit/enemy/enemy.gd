@@ -8,9 +8,8 @@ extends Unit
 	set(value_):
 		type = value_
 		
-		%Sprite2D.texture = load("res://assets/images/sprites/knight " + type + ".png")
+		$BodySprite.texture = load("res://assets/images/sprites/knight " + type + ".png")
 		init_milestones()
-@export var follow_distance: int = 160
 @export var overshoot_limit: int = 5
 @export var patrol_distance: int = 5
 @export var waltz_distance: int = 3
@@ -21,7 +20,7 @@ var target_milestones: Array[Vector2]
 var spawn_position: Vector2:
 	set(value_):
 		spawn_position = value_
-		position = spawn_position
+		position = Vector2(spawn_position)
 var return_position
 
 enum State{IDLE, FOLLOW, BACK, PATROL, WALTZ}
@@ -30,7 +29,7 @@ var current_state: State = State.IDLE:
 		current_state = value_
 		
 		if current_state == State.IDLE:
-			%IdleTimer.start()
+			$IdleTimer.start()
 
 
 #Initial addition of Enemy activity points
@@ -66,10 +65,10 @@ func update_velocity() -> void:
 			return
 		#Player stalking
 		State.FOLLOW:
-			var dist_to_start = global_position.distance_to(spawn_position)
+			var dist_to_return = global_position.distance_to(return_position)
 			
 			#Return after crossing a exclusion zone
-			if dist_to_start > follow_distance:
+			if dist_to_return > level.enemy_follow_distance:
 				target_player = null
 				current_state = State.BACK
 				return

@@ -12,15 +12,13 @@ script = ExtResource("1_sbgiu")
 [node name="Level1" parent="." instance=ExtResource("2_mrp82")]
 
 [node name="Player" parent="." node_paths=PackedStringArray("level") instance=ExtResource("3_db8ab")]
-unique_name_in_owner = true
 level = NodePath("../Level1")
-sprite_size = Vector2i(16, 16)
-speed = 160.0
 
 [node name="Camera2D" parent="Player" node_paths=PackedStringArray("player") instance=ExtResource("4_hl0m3")]
 player = NodePath("..")
 
+[node name="Coins" type="Node2D" parent="."]
+
 [node name="Enemies" type="Node2D" parent="."]
-unique_name_in_owner = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

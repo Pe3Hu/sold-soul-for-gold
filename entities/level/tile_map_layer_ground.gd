@@ -12,4 +12,3 @@ func _use_tile_data_runtime_update(coords_: Vector2i) -> bool:
 	
 func _tile_data_runtime_update(_coords: Vector2i, tile_data: TileData) -> void:
 	tile_data.set_navigation_polygon(0, null)
-	#tile_data.set_custom_data("walkable", false)

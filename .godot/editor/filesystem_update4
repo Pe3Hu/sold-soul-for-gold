@@ -1,7 +1,20 @@
-res://entities/unit/unit.tscn
-res://shaders/wind waker water.gdshader
 res://entities/unit/player/player.tscn
-res://entities/level/tile_map_layer_ground.gd
-res://entities/level/level_1.tscn
+res://shaders/wind waker water.gdshader
+res://entities/unit/unit.tscn
+res://entities/unit/enemy/enemy.tscn
+res://entities/unit/enemy/enemy.gd
+res://entities/world/world.gd
+res://entities/unit/unit.gd
 res://entities/unit/player/player.gd
 res://entities/level/level_1.gd
+res://entities/level/level_1.tscn
+res://entities/level/tile_map_layer_ground.gd
+res://shaders/ring.gdshader
+res://shaders/border.gdshader
+res://shaders/cell jump.gdshader
+res://entities/world/world.tscn
+res://shaders/jump cell square.gdshader
+res://entities/coin/coin.tscn
+res://entities/coin/coin.gd
+res://script/Global.gd
+res://resources/cell_cluster.gd

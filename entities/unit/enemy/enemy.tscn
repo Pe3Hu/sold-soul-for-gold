@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjf0jb6dq84f0"]
+[gd_scene load_steps=12 format=3 uid="uid://cjf0jb6dq84f0"]
 
 [ext_resource type="Script" uid="uid://dgacwybvva4w5" path="res://entities/unit/enemy/enemy.gd" id="1_6d84p"]
 [ext_resource type="Texture2D" uid="uid://shuss6ppf6xt" path="res://assets/images/sprites/knight silver.png" id="2_6d84p"]
+[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/Shadow.png" id="2_nkb2i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5idxs"]
 size = Vector2(14, 4)
@@ -11,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +29,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +46,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +63,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -79,7 +80,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("BodySprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -113,8 +114,10 @@ script = ExtResource("1_6d84p")
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_5idxs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_nkb2i")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_6d84p")
 offset = Vector2(0, -8)
 hframes = 4
@@ -126,8 +129,7 @@ libraries = {
 }
 
 [node name="IdleTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 0.4
+wait_time = 0.05
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

@@ -1,48 +1,68 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1759342285
+::res://::1759413136
 README.md::TextFile::-1::1690795285::0::1::::<><><>0<>0<><>::
-::res://assets/::1759327877
+::res://assets/::1759417276
 default_env.tres::Environment/Environment::-1::1690116911::0::1::::<><><>0<>0<><>::
 ::res://assets/fonts/::1759321766
-::res://assets/fonts/digital/::1759321766
+::res://assets/fonts/digital/::1759342613
 Inter-Black.ttf::FontFile/FontFile::2023361649885781834::1694723238::1759342612::1::::<><><>0<>0<>998c6ab09d6fede0d336fc3dfbaa6d8f<>res://.godot/imported/Inter-Black.ttf-dc56a317d3a728c627eab4f7decfa97d.fontdata::
-::res://assets/fonts/letter/::1759321766
+::res://assets/fonts/letter/::1759342613
 Roboto-Bold.ttf::FontFile/FontFile::7183128479095054959::1663817230::1759342612::1::::<><><>0<>0<>de43c237cc79de1fe037e4fbb86aa5e8<>res://.godot/imported/Roboto-Bold.ttf-c8082163f1cc4886b15df09e2c2c9bef.fontdata::
 Roboto-Light.ttf::FontFile/FontFile::2934334192827154238::1663817230::1759342612::1::::<><><>0<>0<>f12d2488483698521b617a2e7e5b138b<>res://.godot/imported/Roboto-Light.ttf-bc5ccba539903029ec29dc80732f198d.fontdata::
 Walter-Bold.ttf::FontFile/FontFile::6104160909452173604::1570526552::1759342612::1::::<><><>0<>0<>816ad4a2f54adab3921cad0a759db98c<>res://.godot/imported/Walter-Bold.ttf-76c6d6eeaf2f086584d26f8b1554fb5d.fontdata::
-::res://assets/images/::1759327877
+::res://assets/images/::1759412582
+Shadow.png::CompressedTexture2D::5324961005207919250::1614175565::1759412582::1::::<><><>0<>0<>6cb629e7d7db75cbb9546db8b061c39f<>res://.godot/imported/Shadow.png-7f12fb8e826b65bb38a81f96a2638a6c.ctex::
 water.png::CompressedTexture2D::7346467521754476668::1759324142::1759342613::1::::<><><>0<>0<>7964957a8df6405641caa973a6b1ec80<>res://.godot/imported/water.png-393b32796451e6b5b5bb5d3cf1b925fa.ctex::
-::res://assets/images/icons/::1759327878
+::res://assets/images/icons/::1759342613
 icon.png::CompressedTexture2D::2432420761471245026::1690116911::1759342613::1::::<><><>0<>0<>29f7be2a5b6a9c5b1117fcc580947890<>res://.godot/imported/icon.png-2e589b63db70c818291254f4ac8e781c.ctex::
 icon.svg::CompressedTexture2D::9162371498834860976::1690116911::1759342613::1::::<><><>0<>0<>d2f44446704bad5370f1eb2a9c77cdc5<>res://.godot/imported/icon.svg-99474a4dfd6901b288e262a08bb6ef8f.ctex::
-::res://assets/images/sprites/::1759342307
+::res://assets/images/sprites/::1759406012
+Coin.png::CompressedTexture2D::8019257313668975339::1614254806::1759406012::1::::<><><>0<>0<>b3ccb5820244262afa865f6fe912b043<>res://.godot/imported/Coin.png-749cd34405744074b0cac69a5cadc71a.ctex::
 knight gold.png::CompressedTexture2D::1447979635589759858::1614163359::1759342613::1::::<><><>0<>0<>7295d94330e58e0e734de0f8bc65bafc<>res://.godot/imported/knight gold.png-129d68abdac455038f77cafe50264086.ctex::
 knight silver.png::CompressedTexture2D::1279097307919667797::1614163313::1759342613::1::::<><><>0<>0<>0161958111070f9380b88d6bad254681<>res://.godot/imported/knight silver.png-1628cdbc50bcaf923e25ff727e3e7c7b.ctex::
 player.png::CompressedTexture2D::1571058707863723483::1614162593::1759342613::1::::<><><>0<>0<>2e6d8cab3d114f24cc0888705983fb0d<>res://.godot/imported/player.png-e4b0f537f797c6e2bc6bff245cd52abb.ctex::
-::res://assets/images/tilemaps/::1759339024
+::res://assets/images/tilemaps/::1759342613
 TilesetGround.png::CompressedTexture2D::273836536799276140::1759322327::1759342613::1::::<><><>0<>0<>cb5a81852fac47c10ec6dcfb0f9130a3<>res://.godot/imported/TilesetGround.png-663e4efa019218c77822a804afd7d458.ctex::
 TilesetNature.png::CompressedTexture2D::8663892728781522642::1693294974::1759342613::1::::<><><>0<>0<>139ad5a07960c48785b2fd7195b7fc33<>res://.godot/imported/TilesetNature.png-a708febb73d43c60e44be8639c7cf5fb.ctex::
-::res://entities/::1759326211
+::res://assets/sounds/::1759417362
+alert.wav::AudioStreamWAV::6079486635615179229::1742675062::1759417367::1::::<><><>0<>0<>ee0fd3c936c66c77386bcec70597161b<>res://.godot/imported/alert.wav-92ebb304544fa5e76967a972a125d9b4.sample::
+cancel.wav::AudioStreamWAV::852230840793902559::1742675239::1759417367::1::::<><><>0<>0<>5e0c5a2f0d55941c3e04712210cdd3f6<>res://.godot/imported/cancel.wav-e5153e54dbd6e173f733e4feec272ea4.sample::
+coin.wav::AudioStreamWAV::3760920756611487957::1742675107::1759417367::1::::<><><>0<>0<>d5c9417694282c2adb9a47c655360f32<>res://.godot/imported/coin.wav-9081ee1c6d81d9c34d08bc916297b892.sample::
+game over.wav::AudioStreamWAV::9178579568210285682::1742660886::1759417367::1::::<><><>0<>0<>0e7e307122129d650cd75685caba71fd<>res://.godot/imported/game over.wav-6dd789049deef5091b8aabbaa79a09a1.sample::
+grass 1.wav::AudioStreamWAV::1925402932110995439::1742675159::1759417367::1::::<><><>0<>0<>d01bb4a0a991c76ec4a369b58625f9da<>res://.godot/imported/grass 1.wav-e0e02dad32ccdae5c495e1ff897bbf31.sample::
+grass 2.wav::AudioStreamWAV::2422332051260584812::1742675159::1759417367::1::::<><><>0<>0<>9ee35fee39b992123637bd4a894ecfa7<>res://.godot/imported/grass 2.wav-4a38ced006432a753c6209a9c3ca39a2.sample::
+jump.wav::AudioStreamWAV::5750214230144374289::1742675199::1759417367::1::::<><><>0<>0<>1645cb8e1271aa35bdb646cdcf9635cb<>res://.godot/imported/jump.wav-395b727cde98999423d5c020c9c3492f.sample::
+launch.wav::AudioStreamWAV::5636231757313073431::1742675260::1759417367::1::::<><><>0<>0<>267dfa2de3c0240a364aff45de2b88f1<>res://.godot/imported/launch.wav-c908c577211147614ca9332d2d07d135.sample::
+menu.wav::AudioStreamWAV::3015804610796914524::1742675239::1759417367::1::::<><><>0<>0<>25f87c999f7f0e134c19c2a31c8df223<>res://.godot/imported/menu.wav-e54a0da6151a5d557ee74e3d8e9bea72.sample::
+step menu.wav::AudioStreamWAV::6154298075660389171::1742675239::1759417367::1::::<><><>0<>0<>db4abfabd6431561611d92a455e6be0f<>res://.godot/imported/step menu.wav-6298445f86fc40b54f375bcfbb8bbb5d.sample::
+success.wav::AudioStreamWAV::6683687224395677884::1742660886::1759417367::1::::<><><>0<>0<>60d14a9005f9790371112b04786d6476<>res://.godot/imported/success.wav-6fdc92d275b5f10f003cceaa8630f900.sample::
+wind.wav::AudioStreamWAV::9013841206225620455::1742675087::1759417368::1::::<><><>0<>0<>f27ff2ba91c9b2d158316cc708cc115f<>res://.godot/imported/wind.wav-ec283f4d84f3cfd6c4eb231e441b3d63.sample::
+::res://entities/::1759415975
 ::res://entities/camera/::1759339802
 camera.gd::GDScript::2680405228026737207::1759339802::0::1::::camera<>Camera2D<><>0<>0<><>::
 camera.tscn::PackedScene::4054428914402107991::1759326400::0::1::::<><><>0<>0<><>::uid://begn5afr3e78v::::res://entities/camera/camera.gd
-::res://entities/level/::1759342611
-level_1.gd::GDScript::9039883494010533086::1759342406::0::1::::Level<>Node2D<><>0<>0<><>::
-level_1.tscn::PackedScene::6307099496873559143::1759342611::0::1::::<><><>0<>0<><>::uid://d118tb3cq6cty::::res://entities/level/level_1.gd<>uid://d5wbvg5e1h5e::::res://assets/images/tilemaps/TilesetGround.png<>uid://r4vw32ryklbc::::res://shaders/wind waker water.gdshader<>uid://dvo4bu3jyblws::::res://assets/images/tilemaps/TilesetNature.png<>uid://dcwxinikgon61::::res://assets/images/water.png<>uid://d0y41prv1c7lx::::res://entities/level/tile_map_layer_ground.gd
-tile_map_layer_ground.gd::GDScript::8965336246660234013::1759342357::0::1::::<>TileMapLayer<><>0<>0<><>::
-::res://entities/unit/::1759342332
-unit.gd::GDScript::6233058005712540981::1759339762::0::1::::Unit<>CharacterBody2D<><>0<>0<><>::
-unit.tscn::PackedScene::3820430623955760565::1759342332::0::1::::<><><>0<>0<><>::uid://cu2ls4hwd0byj::::res://entities/unit/unit.gd<>uid://wnbdwevcankt::::res://assets/images/sprites/player.png
-::res://entities/unit/enemy/::1759340693
-enemy.gd::GDScript::7580557097446387246::1759338511::0::1::::Enemy<>Unit<><>0<>0<><>::
-enemy.tscn::PackedScene::5416396946434403551::1759340693::0::1::::<><><>0<>0<><>::uid://dgacwybvva4w5::::res://entities/unit/enemy/enemy.gd<>uid://shuss6ppf6xt::::res://assets/images/sprites/knight silver.png
-::res://entities/unit/player/::1759342361
-player.gd::GDScript::469536479173890232::1759342361::0::1::::Player<>Unit<><>0<>0<><>::
-player.tscn::PackedScene::5530770324470311270::1759342285::0::1::::<><><>0<>0<><>::uid://gxpgx8hkj1rg::::res://entities/unit/player/player.gd<>uid://wnbdwevcankt::::res://assets/images/sprites/player.png
-::res://entities/world/::1759340464
-world.gd::GDScript::4268530448360078491::1759339381::0::1::::World<>Node<><>0<>0<><>::
-world.tscn::PackedScene::8246655032211948728::1759340464::0::1::::<><><>0<>0<><>::uid://b12ycqhctu6gd::::res://entities/world/world.gd<>uid://cv4haimmbokyp::::res://entities/level/level_1.tscn<>uid://ck2e8j7awyhqk::::res://entities/unit/player/player.tscn<>uid://bx08370sfhydj::::res://entities/camera/camera.tscn
+::res://entities/coin/::1759417278
+coin.tscn::PackedScene::3523841771255143109::1759416765::0::1::::<><><>0<>0<><>::uid://ch4plhhirat8u::::res://assets/images/Shadow.png<>uid://chi8t31tb40de::::res://entities/coin/coin.gd<>uid://dmit840w63i1h::::res://assets/images/sprites/Coin.png
+coin.gd::GDScript::5282717397414890406::1759416307::0::1::::Coin<>Area2D<><>0<>0<><>::
+::res://entities/level/::1759415866
+level_1.gd::GDScript::9039883494010533086::1759414218::0::1::::Level<>Node2D<><>0<>0<><>::
+level_1.tscn::PackedScene::6307099496873559143::1759415866::0::1::::<><><>0<>0<><>::uid://d118tb3cq6cty::::res://entities/level/level_1.gd<>uid://d5wbvg5e1h5e::::res://assets/images/tilemaps/TilesetGround.png<>uid://r4vw32ryklbc::::res://shaders/wind waker water.gdshader<>uid://dvo4bu3jyblws::::res://assets/images/tilemaps/TilesetNature.png<>uid://dcwxinikgon61::::res://assets/images/water.png<>uid://d0y41prv1c7lx::::res://entities/level/tile_map_layer_ground.gd<>uid://f2ge6fh33i25::::res://shaders/jump cell square.gdshader
+tile_map_layer_ground.gd::GDScript::8965336246660234013::1759410140::0::1::::<>TileMapLayer<><>0<>0<><>::
+::res://entities/unit/::1759412595
+unit.gd::GDScript::6233058005712540981::1759411090::0::1::::Unit<>CharacterBody2D<><>0<>0<><>::
+unit.tscn::PackedScene::3820430623955760565::1759412595::0::1::::<><><>0<>0<><>::uid://cu2ls4hwd0byj::::res://entities/unit/unit.gd<>uid://wnbdwevcankt::::res://assets/images/sprites/player.png<>uid://ch4plhhirat8u::::res://assets/images/Shadow.png
+::res://entities/unit/enemy/::1759412634
+enemy.gd::GDScript::7580557097446387246::1759410682::0::1::::Enemy<>Unit<><>0<>0<><>::
+enemy.tscn::PackedScene::5416396946434403551::1759412634::0::1::::<><><>0<>0<><>::uid://dgacwybvva4w5::::res://entities/unit/enemy/enemy.gd<>uid://shuss6ppf6xt::::res://assets/images/sprites/knight silver.png<>uid://ch4plhhirat8u::::res://assets/images/Shadow.png
+::res://entities/unit/player/::1759414774
+player.gd::GDScript::469536479173890232::1759414774::0::1::::Player<>Unit<><>0<>0<><>::
+player.tscn::PackedScene::5530770324470311270::1759414168::0::1::::<><><>0<>0<><>::uid://gxpgx8hkj1rg::::res://entities/unit/player/player.gd<>uid://ch4plhhirat8u::::res://assets/images/Shadow.png<>uid://wnbdwevcankt::::res://assets/images/sprites/player.png
+::res://entities/world/::1759416604
+world.gd::GDScript::4268530448360078491::1759416604::0::1::::World<>Node<><>0<>0<><>::
+world.tscn::PackedScene::8246655032211948728::1759416595::0::1::::<><><>0<>0<><>::uid://b12ycqhctu6gd::::res://entities/world/world.gd<>uid://cv4haimmbokyp::::res://entities/level/level_1.tscn<>uid://ck2e8j7awyhqk::::res://entities/unit/player/player.tscn<>uid://bx08370sfhydj::::res://entities/camera/camera.tscn
 ::res://script/::1759321766
 Global.gd::GDScript::5694458191357261245::1746832013::0::1::::<>Node<><>0<>0<><>::
-::res://shaders/::1759342281
-wind waker water.gdshader::Shader::1254393154196690816::1759342281::0::1::::<><><>0<>0<><>::
+::res://shaders/::1759413334
+jump cell circle.gdshader::Shader::5216103769380025418::1759412231::0::1::::<><><>0<>0<><>::
+jump cell square.gdshader::Shader::407055498986446868::1759413334::0::1::::<><><>0<>0<><>::
+wind waker water.gdshader::Shader::1254393154196690816::1759406893::0::1::::<><><>0<>0<><>::
