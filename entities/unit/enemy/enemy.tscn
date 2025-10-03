@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjf0jb6dq84f0"]
+[gd_scene load_steps=15 format=3 uid="uid://cjf0jb6dq84f0"]
 
 [ext_resource type="Script" uid="uid://dgacwybvva4w5" path="res://entities/unit/enemy/enemy.gd" id="1_6d84p"]
 [ext_resource type="Texture2D" uid="uid://shuss6ppf6xt" path="res://assets/images/sprites/knight silver.png" id="2_6d84p"]
 [ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/Shadow.png" id="2_nkb2i"]
+[ext_resource type="AudioStream" uid="uid://csu7iyx677h2l" path="res://assets/sounds/alert.wav" id="4_dpoy6"]
+[ext_resource type="AudioStream" uid="uid://d31f4nltkkpbe" path="res://assets/sounds/game over.wav" id="5_kfa0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5idxs"]
 size = Vector2(14, 4)
@@ -102,6 +104,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_6d84p"]
 radius = 69.00725
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nkb2i"]
+radius = 8.062258
+
 [node name="Enemy" type="CharacterBody2D"]
 texture_filter = 1
 collision_layer = 2
@@ -128,6 +133,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_80d3x")
 }
 
+[node name="AudioAlert" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_dpoy6")
+
 [node name="IdleTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
@@ -149,7 +158,19 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowArea"]
 shape = SubResource("CircleShape2D_6d84p")
 
+[node name="KillArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_nkb2i")
+
+[node name="AudioLose" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_kfa0h")
+
 [connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="FollowArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_exited" from="FollowArea" to="." method="_on_follow_area_body_exited"]
+[connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]

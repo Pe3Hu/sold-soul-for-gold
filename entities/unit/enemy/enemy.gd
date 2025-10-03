@@ -2,9 +2,10 @@ class_name Enemy
 extends Unit
 
 
+
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
-@export_enum("gold", "silver") var type:
+@export_enum("golden", "silver") var type:
 	set(value_):
 		type = value_
 		
@@ -41,10 +42,14 @@ func init_milestones() -> void:
 			target_milestones.append(spawn_position + patrol_position)
 			target_milestones.append(spawn_position - patrol_position)
 			current_state = State.PATROL
-		"gold":
+		"golden":
 			set_next_waltz_position()
 	
 func _physics_process(_delta: float) -> void:
+	if level.world.is_pause: 
+		update_animation()
+		return
+	
 	update_velocity() 
 	move_and_slide()
 	
@@ -97,7 +102,7 @@ func update_velocity() -> void:
 			nav_agent.target_position = target_milestones.front()
 	
 	var next_path_position = nav_agent.get_next_path_position()
-	var new_velocity = current_agent_position.direction_to(next_path_position) * speed
+	var new_velocity = current_agent_position.direction_to(next_path_position) * level.world.enemy_speed
 	
 	#Status change at the end of movement
 	if nav_agent.is_navigation_finished():
@@ -151,6 +156,7 @@ func _on_follow_area_body_entered(body: Node2D) -> void:
 		target_player = body
 		return_position = Vector2(global_position)
 		current_state = State.FOLLOW
+		%AudioAlert.play()
 	
 #End chasing the player
 func _on_follow_area_body_exited(body: Node2D) -> void:
@@ -158,10 +164,15 @@ func _on_follow_area_body_exited(body: Node2D) -> void:
 		target_player = null
 		current_state = State.BACK
 	
+func _on_kill_area_body_entered(body: Node2D) -> void:
+	if body is Player:
+		level.world.menu.mission_failed.emit()
+		%AudioLose.play()
+	
 #Start of next movement
 func _on_idle_timer_timeout() -> void:
 	match type:
-		"gold":
+		"golden":
 			set_next_waltz_position()
 		"silver":
 			set_next_patrol_position()

@@ -1542,6 +1542,7 @@ rock_layer = NodePath("../TileMapLayerRock")
 tile_set = SubResource("TileSet_t0rv5")
 
 [node name="JumpCell" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_ammam")
 custom_minimum_size = Vector2(16, 16)
 offset_right = 12.0

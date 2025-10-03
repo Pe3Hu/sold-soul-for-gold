@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://jhxruskstibl"]
+
+[ext_resource type="Script" uid="uid://bjckp0l5th73i" path="res://entities/menu/options/option_parameter.gd" id="1_8jkgo"]
+[ext_resource type="Texture2D" uid="uid://huacyikh4t6i" path="res://assets/images/ui/icon/coin counter.png" id="2_jx25b"]
+[ext_resource type="FontFile" uid="uid://sf7jw4oqaet4" path="res://assets/fonts/letter/NormalFont.ttf" id="3_x4se3"]
+[ext_resource type="Texture2D" uid="uid://c8yhwnphyk2k8" path="res://assets/images/ui/nine patch/main_bg_panel.png" id="4_utowc"]
+[ext_resource type="Texture2D" uid="uid://buxblpkngl4yl" path="res://assets/images/ui/slider/h_slidder_grabber.png" id="5_6xw7o"]
+[ext_resource type="Texture2D" uid="uid://chv0xxm0e7kv4" path="res://assets/images/ui/slider/h_slidder_grabber_hover.png" id="6_8eoqc"]
+[ext_resource type="Texture2D" uid="uid://rm4ddlgklcyf" path="res://assets/images/ui/slider/h_slidder_grabber_disabled.png" id="7_rm8f5"]
+[ext_resource type="Texture2D" uid="uid://mnpca3udt38n" path="res://assets/images/ui/slider/slider_progress.png" id="8_y25xc"]
+[ext_resource type="PackedScene" uid="uid://dbkrytwa7t2du" path="res://entities/menu/options/tooltip.tscn" id="9_u6wp4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uhj4a"]
+texture = ExtResource("8_y25xc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqfht"]
+
+[node name="OptionParameter" type="HBoxContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+alignment = 1
+script = ExtResource("1_8jkgo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_jx25b")
+
+[node name="Value" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x4se3")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(120, 8)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_utowc")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="HSlider" type="HSlider" parent="NinePatchRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("5_6xw7o")
+theme_override_icons/grabber_highlight = ExtResource("6_8eoqc")
+theme_override_icons/grabber_disabled = ExtResource("7_rm8f5")
+theme_override_icons/tick = ExtResource("5_6xw7o")
+theme_override_styles/slider = SubResource("StyleBoxTexture_uhj4a")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_yqfht")
+max_value = 1000.0
+ticks_on_borders = true
+
+[node name="Tooltip" parent="." instance=ExtResource("9_u6wp4")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="value_changed" from="NinePatchRect/HSlider" to="." method="_on_h_slider_value_changed"]

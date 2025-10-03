@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 @export var level: Level
 @export var sprite_size: Vector2i = Vector2i(16, 16)
-@export var speed: float = 120
 
 @onready var animations: AnimationPlayer = $AnimationPlayer
 
@@ -12,6 +11,12 @@ var is_jumping: bool = false
 
 
 func update_animation() -> void:
+	if level.world.is_pause: 
+		if animations.is_playing():
+			animations.stop()
+		
+		return
+	
 	if is_jumping:
 		animations.play("jump")
 	else:

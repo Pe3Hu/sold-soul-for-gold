@@ -9,19 +9,28 @@ var current_jump_cell:
 		level.jump_cell.visible = current_jump_cell != null
 
 
-
 func _physics_process(delta_: float) -> void:
+	if level.world.is_pause: 
+		update_animation()
+		return
+	
 	update_velocity(delta_)
 	move_and_slide()
 	update_animation()
 	
+	#await %AudioGrass1.finished
+	#await %AudioGrass1.finished
+	#await %AudioGrass2.finished
+	#var rnd_grass_index = randi_range(1, 2)
+	#var audio = get("%AudioGrass" + str(rnd_grass_index))
+	#audio.play()
+	
 func update_velocity(delta_: float) -> void:
-	if is_jumping:
-		return
+	if is_jumping: return
 	
 	#Player movement
 	var move_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = move_direction * speed
+	velocity = move_direction * level.world.player_speed
 	
 	if velocity.length() == 0: return
 	
@@ -76,10 +85,12 @@ func set_current_jump_cell(start_coord_: Vector2i, move_direction_: Vector2) -> 
 func start_jump() -> void:
 	if current_jump_cell != null and !is_jumping:
 		velocity = Vector2.ZERO
+		current_jump_cell = null
 		is_jumping = true
-		var jump_vector = level.jump_cell.position + level.TILE_SIZE * 0.5# + previous_direction * level.TILE_SIZE * 2.5#(level.jump_cell.position - position) * 1.25 + position
+		var jump_vector = level.jump_cell.position + level.TILE_SIZE * 0.5
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "position", jump_vector, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		%AudioJump.play()
 		#tween.tween_callback(self.queue_free)
 	
 func end_jump() -> void:

@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck2e8j7awyhqk"]
+[gd_scene load_steps=15 format=3 uid="uid://ck2e8j7awyhqk"]
 
 [ext_resource type="Script" uid="uid://gxpgx8hkj1rg" path="res://entities/unit/player/player.gd" id="1_bffth"]
 [ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/Shadow.png" id="2_8ev0q"]
 [ext_resource type="Texture2D" uid="uid://wnbdwevcankt" path="res://assets/images/sprites/player.png" id="2_ud2ev"]
+[ext_resource type="AudioStream" uid="uid://cn6pgnvefcv2h" path="res://assets/sounds/jump.wav" id="4_siiy4"]
+[ext_resource type="AudioStream" uid="uid://2oxdtmn46cd0" path="res://assets/sounds/grass 1.wav" id="5_ctd7j"]
+[ext_resource type="AudioStream" uid="uid://barnpp7okme57" path="res://assets/sounds/grass 2.wav" id="6_pa4sa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5idxs"]
 size = Vector2(14, 4)
@@ -20,6 +23,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ud2ev"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodySprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_jump"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5fyko"]
@@ -90,35 +122,6 @@ tracks/0/keys = {
 "values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_ud2ev"]
-resource_name = "jump"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BodySprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"end_jump"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_80d3x"]
 _data = {
 &"RESET": SubResource("Animation_3fqbo"),
@@ -152,3 +155,16 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioJump" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_siiy4")
+
+[node name="AudioGrass1" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_ctd7j")
+
+[node name="AudioGrass2" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_pa4sa")
+playback_type = 1

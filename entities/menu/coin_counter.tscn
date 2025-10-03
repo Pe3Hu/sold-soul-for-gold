@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi76d58nko2mi"]
+
+[ext_resource type="Script" uid="uid://bd2hsnmec8plk" path="res://entities/menu/coin_counter.gd" id="1_fxfjk"]
+[ext_resource type="Texture2D" uid="uid://huacyikh4t6i" path="res://assets/images/ui/icon/coin counter.png" id="1_hie23"]
+[ext_resource type="FontFile" uid="uid://sf7jw4oqaet4" path="res://assets/fonts/letter/NormalFont.ttf" id="3_vlmds"]
+[ext_resource type="AudioStream" uid="uid://c2hvl8aomlmm3" path="res://assets/sounds/win.wav" id="4_5rosu"]
+
+[node name="CoinCounter" type="MarginContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -57.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+script = ExtResource("1_fxfjk")
+
+[node name="CoinHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="CoinTextureRect" type="TextureRect" parent="CoinHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_hie23")
+
+[node name="CoinLabel" type="Label" parent="CoinHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vlmds")
+text = "0/4"
+
+[node name="AudioWin" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_5rosu")

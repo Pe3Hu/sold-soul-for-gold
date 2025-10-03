@@ -1,0 +1,396 @@
+[gd_scene load_steps=19 format=3 uid="uid://cprf5jw0ws56q"]
+
+[ext_resource type="Script" uid="uid://df3pvttms0msa" path="res://entities/menu/menu.gd" id="1_aud0f"]
+[ext_resource type="Texture2D" uid="uid://duun6mglmnpxe" path="res://assets/images/ui/button/button_normal.png" id="1_kskt3"]
+[ext_resource type="Texture2D" uid="uid://bnmktwvfsdir6" path="res://assets/images/ui/button/button_pressed.png" id="2_aud0f"]
+[ext_resource type="Texture2D" uid="uid://brnfxm4bo2q3d" path="res://assets/images/ui/nine patch/buttons_bg_panel.png" id="2_tjnt2"]
+[ext_resource type="Texture2D" uid="uid://njdechwtg4or" path="res://assets/images/ui/nine patch/menu_bg_panel.png" id="3_3fnu5"]
+[ext_resource type="Texture2D" uid="uid://wcutwgbfxwig" path="res://assets/images/ui/button/button_hover.png" id="3_yttcm"]
+[ext_resource type="Texture2D" uid="uid://bcv66nebgtcjw" path="res://assets/images/ui/button/button_disabled.png" id="4_tjnt2"]
+[ext_resource type="FontFile" uid="uid://sf7jw4oqaet4" path="res://assets/fonts/letter/NormalFont.ttf" id="5_3fnu5"]
+[ext_resource type="PackedScene" uid="uid://bi76d58nko2mi" path="res://entities/menu/coin_counter.tscn" id="9_425a5"]
+[ext_resource type="PackedScene" uid="uid://jhxruskstibl" path="res://entities/menu/options/option_parameter.tscn" id="10_puy48"]
+[ext_resource type="Texture2D" uid="uid://ccwrwvaho8lfj" path="res://assets/images/ui/button/button_return.png" id="11_2aocl"]
+[ext_resource type="Texture2D" uid="uid://b53vqc1pst7f1" path="res://assets/images/ui/button/button_return_hover.png" id="12_ffra8"]
+[ext_resource type="Texture2D" uid="uid://bx1bhah8j3w2c" path="res://assets/images/ui/icon/hell mode.png" id="13_2aocl"]
+[ext_resource type="Texture2D" uid="uid://csysu3eelokid" path="res://assets/images/ui/button/button_checked.png" id="14_ffra8"]
+[ext_resource type="Texture2D" uid="uid://cqn2u7mst88a7" path="res://assets/images/ui/button/button_unchecked.png" id="14_y3vgo"]
+[ext_resource type="Script" uid="uid://dr5qye0r4ta1p" path="res://entities/menu/hell_mode_check_button.gd" id="16_66uc6"]
+[ext_resource type="PackedScene" uid="uid://dbkrytwa7t2du" path="res://entities/menu/options/tooltip.tscn" id="16_yqfht"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3vgo"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_aud0f")
+
+[node name="BackgroundPanel" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture = ExtResource("2_tjnt2")
+patch_margin_left = 9
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="CoinCounter" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("9_425a5")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = -105.0
+offset_bottom = 72.0
+menu = NodePath("..")
+
+[node name="ButtonsPanel" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.5
+offset_top = -224.75
+offset_right = 101.5
+offset_bottom = 224.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture = ExtResource("2_tjnt2")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MainVBoxContainer" type="VBoxContainer" parent="ButtonsPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -202.0
+offset_right = 80.0
+offset_bottom = 202.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Message" type="Label" parent="ButtonsPanel/MainVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_3fnu5")
+theme_override_font_sizes/font_size = 50
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="ButtonsPanel/MainVBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_kskt3")
+texture_pressed = ExtResource("2_aud0f")
+texture_hover = ExtResource("3_yttcm")
+texture_disabled = ExtResource("4_tjnt2")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox/StartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_3fnu5")
+theme_override_font_sizes/font_size = 24
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_kskt3")
+texture_pressed = ExtResource("2_aud0f")
+texture_hover = ExtResource("3_yttcm")
+texture_disabled = ExtResource("4_tjnt2")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox/ResumeButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_3fnu5")
+theme_override_font_sizes/font_size = 24
+text = "Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_kskt3")
+texture_pressed = ExtResource("2_aud0f")
+texture_hover = ExtResource("3_yttcm")
+texture_disabled = ExtResource("4_tjnt2")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox/RestartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_3fnu5")
+theme_override_font_sizes/font_size = 24
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_kskt3")
+texture_pressed = ExtResource("2_aud0f")
+texture_hover = ExtResource("3_yttcm")
+texture_disabled = ExtResource("4_tjnt2")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox/OptionsButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_3fnu5")
+theme_override_font_sizes/font_size = 24
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_kskt3")
+texture_pressed = ExtResource("2_aud0f")
+texture_hover = ExtResource("3_yttcm")
+texture_disabled = ExtResource("4_tjnt2")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox/QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_3fnu5")
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsPanel" type="NinePatchRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -114.0
+offset_right = 135.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture = ExtResource("3_3fnu5")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="ExitOptionsButton" type="TextureButton" parent="OptionsPanel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("11_2aocl")
+texture_hover = ExtResource("12_ffra8")
+stretch_mode = 0
+
+[node name="OptionsVBoxContainer" type="VBoxContainer" parent="OptionsPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.5
+offset_top = -77.0
+offset_right = 88.5
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="SlidersVBox" type="VBoxContainer" parent="OptionsPanel/OptionsVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="CoinCounterParameter" parent="OptionsPanel/OptionsVBoxContainer/SlidersVBox" node_paths=PackedStringArray("menu") instance=ExtResource("10_puy48")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+menu = NodePath("../../../..")
+type = "coin counter"
+current_slider_value = 3
+min_slider_value = 1
+max_slider_value = 20
+
+[node name="EnemyCounterParameter" parent="OptionsPanel/OptionsVBoxContainer/SlidersVBox" node_paths=PackedStringArray("menu") instance=ExtResource("10_puy48")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+menu = NodePath("../../../..")
+type = "enemy counter"
+current_slider_value = 9
+min_slider_value = 1
+max_slider_value = 30
+
+[node name="EnemySpeedParameter" parent="OptionsPanel/OptionsVBoxContainer/SlidersVBox" node_paths=PackedStringArray("menu") instance=ExtResource("10_puy48")]
+layout_mode = 2
+mouse_filter = 1
+menu = NodePath("../../../..")
+type = "enemy speed"
+current_slider_value = 80
+min_slider_value = 20
+max_slider_value = 200
+
+[node name="PlayerSpeedParameter" parent="OptionsPanel/OptionsVBoxContainer/SlidersVBox" node_paths=PackedStringArray("menu") instance=ExtResource("10_puy48")]
+layout_mode = 2
+mouse_filter = 1
+menu = NodePath("../../../..")
+type = "player speed"
+current_slider_value = 120
+min_slider_value = 50
+max_slider_value = 300
+
+[node name="HellModeCheckButton" type="CheckButton" parent="OptionsPanel/OptionsVBoxContainer" node_paths=PackedStringArray("tooltip")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y3vgo")
+theme_override_icons/checked = ExtResource("14_ffra8")
+theme_override_icons/unchecked = ExtResource("14_y3vgo")
+icon = ExtResource("13_2aocl")
+flat = true
+alignment = 1
+script = ExtResource("16_66uc6")
+tooltip = NodePath("Tooltip")
+
+[node name="Tooltip" parent="OptionsPanel/OptionsVBoxContainer/HellModeCheckButton" instance=ExtResource("16_yqfht")]
+layout_mode = 0
+text = "Hell Mode"
+
+[connection signal="coins_collected" from="." to="." method="_on_coins_collected"]
+[connection signal="mission_failed" from="." to="." method="_on_mission_failed"]
+[connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/MarginContainer/ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]
+[connection signal="pressed" from="OptionsPanel/OptionsVBoxContainer/HellModeCheckButton" to="." method="_on_hell_mode_check_button_pressed"]

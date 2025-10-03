@@ -13,15 +13,20 @@ config_version=5
 config/name="sold soul for gold"
 run/main_scene="res://entities/world/world.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://assets/images/icons/icon.svg"
+config/icon="res://assets/images/ui/icon.svg"
 
 [autoload]
 
 Global="*res://script/Global.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [input]
 

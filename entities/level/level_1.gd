@@ -2,22 +2,25 @@ class_name Level
 extends Node2D
 
 
+@export var world: World
+@export var camera_bounce_collision_shape: CollisionShape2D
 @export var noise: FastNoiseLite
-@export var rnd_seed: int = 19#7
+@export var rnd_seed: int = 7#7 21
 @export_range(-0.6, 0.6, 0.01) var land_cap: float = 0.1
 @export_range(-0.6, 0.6, 0.01) var rock_cap: float = -0.35
-@export_range(1, 10, 1) var jump_cell_distance: int = 10
+@export_range(1, 10, 1) var jump_cell_distance: int = 3
 @export_range(1, 10, 1) var enemy_follow_cell_distance: int:
 	set(value_):
 		enemy_follow_cell_distance = value_
 		enemy_follow_distance = enemy_follow_cell_distance * TILE_SIZE.x
+@export_range(1, 10, 1) var spawn_exclusion_zone: int = 5
 
 @onready var water_sprite: Sprite2D = $WaterSprite
 @onready var ground_tilemap: TileMapLayer = $TileMapLayerGround
 @onready var rock_tilemap: TileMapLayer = $TileMapLayerRock
 @onready var jump_cell: ColorRect = $JumpCell
 
-const MAP_SIZE = Vector2i(40, 40)
+const MAP_SIZE = Vector2i(60, 60)
 const TILE_SIZE = Vector2(16, 16)
 const WATER_SIZE = Vector2(64, 64)
 
@@ -28,11 +31,19 @@ var exiled_cells: Array[Vector2i]
 var enemy_follow_distance: float 
 
 
-func init_cells():
+func _ready() -> void:
 	enemy_follow_cell_distance = 10
 	
-	#Сentering TileMap
+func reset() -> void:
+	available_cells.clear()
+	occupied_cells.clear()
+	exiled_cells.clear()
+	
+func init_cells():
 	#position = -Vector2(MAP_SIZE) / 2 * TILE_SIZE
+	reset()
+	
+	#Сentering TileMap
 	noise.seed = rnd_seed #randi()
 	
 	#Cells generation
@@ -56,6 +67,9 @@ func init_cells():
 	
 	#water shader sprite stretching
 	scale_water_spirte()
+	
+	#set camera limits
+	resize_camera_collision_shape()
 	
 func init_exiled_cells(ground_cells_: Array[Vector2i]) -> void:
 	var directions = [
@@ -110,6 +124,11 @@ func init_exiled_cells(ground_cells_: Array[Vector2i]) -> void:
 func scale_water_spirte() -> void:
 	water_sprite.scale = Vector2(MAP_SIZE) * TILE_SIZE / WATER_SIZE
 	
+func resize_camera_collision_shape() -> void:
+	camera_bounce_collision_shape.shape.size = Vector2(MAP_SIZE) * TILE_SIZE 
+	var camera_area = camera_bounce_collision_shape.get_parent()
+	camera_area.position = Vector2(MAP_SIZE) * TILE_SIZE / 2
+	
 func occupy_cell() -> Variant:
 	if available_cells.is_empty(): return null
 	
@@ -117,3 +136,7 @@ func occupy_cell() -> Variant:
 	available_cells.erase(cell)
 	occupied_cells.append(cell)
 	return cell
+	
+func apply_exclusion_zone(cell_: Vector2i) -> void:
+	available_cells = available_cells.filter(func (a): return cell_.distance_to(a) > spawn_exclusion_zone)
+	
