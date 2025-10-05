@@ -1,13 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://cprf5jw0ws56q"]
+[gd_scene load_steps=26 format=3 uid="uid://cprf5jw0ws56q"]
 
 [ext_resource type="Script" uid="uid://df3pvttms0msa" path="res://entities/menu/menu.gd" id="1_aud0f"]
 [ext_resource type="Texture2D" uid="uid://duun6mglmnpxe" path="res://assets/images/ui/button/button_normal.png" id="1_kskt3"]
 [ext_resource type="Texture2D" uid="uid://bnmktwvfsdir6" path="res://assets/images/ui/button/button_pressed.png" id="2_aud0f"]
 [ext_resource type="Texture2D" uid="uid://brnfxm4bo2q3d" path="res://assets/images/ui/nine patch/buttons_bg_panel.png" id="2_tjnt2"]
 [ext_resource type="Texture2D" uid="uid://njdechwtg4or" path="res://assets/images/ui/nine patch/menu_bg_panel.png" id="3_3fnu5"]
+[ext_resource type="Shader" uid="uid://cynag0ma8kgi0" path="res://shaders/congratulation.gdshader" id="3_uhj4a"]
 [ext_resource type="Texture2D" uid="uid://wcutwgbfxwig" path="res://assets/images/ui/button/button_hover.png" id="3_yttcm"]
+[ext_resource type="Texture2D" uid="uid://koaihkqcx25t" path="res://assets/images/shine.png" id="4_1228l"]
 [ext_resource type="Texture2D" uid="uid://bcv66nebgtcjw" path="res://assets/images/ui/button/button_disabled.png" id="4_tjnt2"]
-[ext_resource type="FontFile" uid="uid://sf7jw4oqaet4" path="res://assets/fonts/letter/NormalFont.ttf" id="5_3fnu5"]
+[ext_resource type="FontFile" uid="uid://dju2lhyn0q2qc" path="res://assets/fonts/GothicPixels.ttf" id="5_3fnu5"]
 [ext_resource type="PackedScene" uid="uid://bi76d58nko2mi" path="res://entities/menu/coin_counter.tscn" id="9_425a5"]
 [ext_resource type="PackedScene" uid="uid://jhxruskstibl" path="res://entities/menu/options/option_parameter.tscn" id="10_puy48"]
 [ext_resource type="Texture2D" uid="uid://ccwrwvaho8lfj" path="res://assets/images/ui/button/button_return.png" id="11_2aocl"]
@@ -17,6 +19,31 @@
 [ext_resource type="Texture2D" uid="uid://cqn2u7mst88a7" path="res://assets/images/ui/button/button_unchecked.png" id="14_y3vgo"]
 [ext_resource type="Script" uid="uid://dr5qye0r4ta1p" path="res://entities/menu/hell_mode_check_button.gd" id="16_66uc6"]
 [ext_resource type="PackedScene" uid="uid://dbkrytwa7t2du" path="res://entities/menu/options/tooltip.tscn" id="16_yqfht"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uhj4a"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1228l"]
+noise = SubResource("FastNoiseLite_uhj4a")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cgjbn"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eiwtl"]
+noise = SubResource("FastNoiseLite_cgjbn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgjbn"]
+shader = ExtResource("3_uhj4a")
+shader_parameter/shine_num = 8.0
+shader_parameter/rotation_speed = 3.0
+shader_parameter/light_magnitude = 2.0
+shader_parameter/filter_distence = 1.0
+shader_parameter/filter_magnitude = 1.0
+shader_parameter/filter_minv = 0.75
+shader_parameter/cut_inner_radius = 0.0
+shader_parameter/color = Color(0.95000005, 1, 0.39999998, 1)
+shader_parameter/NOISE = SubResource("NoiseTexture2D_1228l")
+shader_parameter/NOISE2 = SubResource("NoiseTexture2D_eiwtl")
+shader_parameter/NOISE_speed = Vector2(0, 0)
+shader_parameter/NOISE_magnitude = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3vgo"]
 
@@ -46,8 +73,21 @@ patch_margin_top = 7
 patch_margin_right = 7
 patch_margin_bottom = 7
 
+[node name="CongratulationTextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_cgjbn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_1228l")
+
 [node name="CoinCounter" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("9_425a5")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_left = -105.0
 offset_bottom = 72.0
@@ -94,7 +134,6 @@ alignment = 1
 [node name="Message" type="Label" parent="ButtonsPanel/MainVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_3fnu5")
 theme_override_font_sizes/font_size = 50
 text = "Menu"
 horizontal_alignment = 1
@@ -142,6 +181,7 @@ vertical_alignment = 1
 
 [node name="ResumeButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 mouse_filter = 1
@@ -173,6 +213,7 @@ vertical_alignment = 1
 
 [node name="RestartButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 mouse_filter = 1
@@ -230,6 +271,70 @@ mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_3fnu5")
 theme_override_font_sizes/font_size = 24
 text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_kskt3")
+texture_pressed = ExtResource("2_aud0f")
+texture_hover = ExtResource("3_yttcm")
+texture_disabled = ExtResource("4_tjnt2")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox/LoadButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_3fnu5")
+theme_override_font_sizes/font_size = 24
+text = "Load"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveButton" type="TextureButton" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_kskt3")
+texture_pressed = ExtResource("2_aud0f")
+texture_hover = ExtResource("3_yttcm")
+texture_disabled = ExtResource("4_tjnt2")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ButtonsPanel/MainVBoxContainer/ButtonsVBox/SaveButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_3fnu5")
+theme_override_font_sizes/font_size = 24
+text = "Save"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -332,7 +437,6 @@ alignment = 1
 [node name="CoinCounterParameter" parent="OptionsPanel/OptionsVBoxContainer/SlidersVBox" node_paths=PackedStringArray("menu") instance=ExtResource("10_puy48")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
 menu = NodePath("../../../..")
 type = "coin counter"
 current_slider_value = 3
@@ -342,7 +446,6 @@ max_slider_value = 20
 [node name="EnemyCounterParameter" parent="OptionsPanel/OptionsVBoxContainer/SlidersVBox" node_paths=PackedStringArray("menu") instance=ExtResource("10_puy48")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
 menu = NodePath("../../../..")
 type = "enemy counter"
 current_slider_value = 9
@@ -351,19 +454,17 @@ max_slider_value = 30
 
 [node name="EnemySpeedParameter" parent="OptionsPanel/OptionsVBoxContainer/SlidersVBox" node_paths=PackedStringArray("menu") instance=ExtResource("10_puy48")]
 layout_mode = 2
-mouse_filter = 1
 menu = NodePath("../../../..")
 type = "enemy speed"
-current_slider_value = 80
+current_slider_value = 60
 min_slider_value = 20
 max_slider_value = 200
 
 [node name="PlayerSpeedParameter" parent="OptionsPanel/OptionsVBoxContainer/SlidersVBox" node_paths=PackedStringArray("menu") instance=ExtResource("10_puy48")]
 layout_mode = 2
-mouse_filter = 1
 menu = NodePath("../../../..")
 type = "player speed"
-current_slider_value = 120
+current_slider_value = 110
 min_slider_value = 50
 max_slider_value = 300
 
@@ -391,6 +492,8 @@ text = "Hell Mode"
 [connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="ButtonsPanel/MainVBoxContainer/ButtonsVBox/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="OptionsPanel/MarginContainer/ExitOptionsButton" to="." method="_on_exit_options_button_pressed"]
 [connection signal="pressed" from="OptionsPanel/OptionsVBoxContainer/HellModeCheckButton" to="." method="_on_hell_mode_check_button_pressed"]

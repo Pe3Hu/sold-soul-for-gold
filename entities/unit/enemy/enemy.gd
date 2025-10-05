@@ -2,8 +2,8 @@ class_name Enemy
 extends Unit
 
 
-
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var idle_timer: Timer = $IdleTimer
 
 @export_enum("golden", "silver") var type:
 	set(value_):
@@ -14,6 +14,7 @@ extends Unit
 @export var overshoot_limit: int = 5
 @export var patrol_distance: int = 5
 @export var waltz_distance: int = 3
+@export var jump_invulnerability_delay: float = 0.4
 
 var target_player: Player
 var target_milestones: Array[Vector2]
@@ -30,7 +31,7 @@ var current_state: State = State.IDLE:
 		current_state = value_
 		
 		if current_state == State.IDLE:
-			$IdleTimer.start()
+			idle_timer.start()
 
 
 #Initial addition of Enemy activity points
@@ -39,8 +40,8 @@ func init_milestones() -> void:
 		"silver":
 			var rnd_angle = randf_range(0, PI * 2)
 			var patrol_position = Vector2.from_angle(rnd_angle) * patrol_distance * sprite_size.length()
-			target_milestones.append(spawn_position + patrol_position)
-			target_milestones.append(spawn_position - patrol_position)
+			target_milestones.append(-patrol_position)
+			target_milestones.append(patrol_position)
 			current_state = State.PATROL
 		"golden":
 			set_next_waltz_position()
@@ -96,10 +97,10 @@ func update_velocity() -> void:
 				return
 		State.PATROL:
 			#Choosing next milestone for movement
-			nav_agent.target_position = target_milestones.front()
+			nav_agent.target_position = target_milestones.front() + spawn_position
 		State.WALTZ:
 			#Choosing next milestone for movement
-			nav_agent.target_position = target_milestones.front()
+			nav_agent.target_position = target_milestones.front() + spawn_position
 	
 	var next_path_position = nav_agent.get_next_path_position()
 	var new_velocity = current_agent_position.direction_to(next_path_position) * level.world.enemy_speed
@@ -130,7 +131,7 @@ func set_next_waltz_position() -> void:
 	var next_milestone_offset = randf_range(0.75, 1) * waltz_distance * sprite_size.length()
 	
 	#Adding next milestone for movement
-	var next_milestone = spawn_position + Vector2.from_angle(new_angle) * next_milestone_offset
+	var next_milestone = Vector2.from_angle(new_angle) * next_milestone_offset
 	target_milestones.append(next_milestone)
 	
 	#Status change at the end of movement
@@ -166,8 +167,11 @@ func _on_follow_area_body_exited(body: Node2D) -> void:
 	
 func _on_kill_area_body_entered(body: Node2D) -> void:
 	if body is Player:
-		level.world.menu.mission_failed.emit()
-		%AudioLose.play()
+		await get_tree().create_timer(jump_invulnerability_delay).timeout 
+		
+		if !body.is_jumping and !body.is_extinction:
+			level.world.menu.mission_failed.emit()
+			%AudioLose.play()
 	
 #Start of next movement
 func _on_idle_timer_timeout() -> void:

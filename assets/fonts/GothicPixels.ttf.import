@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cs75vx6xtcem3"
-path="res://.godot/imported/Walter-Bold.ttf-76c6d6eeaf2f086584d26f8b1554fb5d.fontdata"
+uid="uid://dju2lhyn0q2qc"
+path="res://.godot/imported/GothicPixels.ttf-d8f3600e12249214e3bf08e66ae70706.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/letter/Walter-Bold.ttf"
-dest_files=["res://.godot/imported/Walter-Bold.ttf-76c6d6eeaf2f086584d26f8b1554fb5d.fontdata"]
+source_file="res://assets/fonts/GothicPixels.ttf"
+dest_files=["res://.godot/imported/GothicPixels.ttf-d8f3600e12249214e3bf08e66ae70706.fontdata"]
 
 [params]
 
@@ -23,7 +23,7 @@ allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
 hinting=1
-subpixel_positioning=1
+subpixel_positioning=4
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null

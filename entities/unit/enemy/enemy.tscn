@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgacwybvva4w5" path="res://entities/unit/enemy/enemy.gd" id="1_6d84p"]
 [ext_resource type="Texture2D" uid="uid://shuss6ppf6xt" path="res://assets/images/sprites/knight silver.png" id="2_6d84p"]
-[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/Shadow.png" id="2_nkb2i"]
+[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/shadow.png" id="2_nkb2i"]
 [ext_resource type="AudioStream" uid="uid://csu7iyx677h2l" path="res://assets/sounds/alert.wav" id="4_dpoy6"]
 [ext_resource type="AudioStream" uid="uid://d31f4nltkkpbe" path="res://assets/sounds/game over.wav" id="5_kfa0h"]
 

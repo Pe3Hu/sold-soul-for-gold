@@ -1,12 +1,19 @@
 class_name Player
 extends Unit
 
+
+@export var jump_time: float = 0.4
+@export var extinction_delay_time: float = 0.2
+@export var extinction_invulnerability_delay: float = 0.4
+
 var previous_direction: Vector2
 var current_jump_cell:
 	set(value_):
 		current_jump_cell = value_
 		
 		level.jump_cell.visible = current_jump_cell != null
+
+var is_extinction: bool = false
 
 
 func _physics_process(delta_: float) -> void:
@@ -40,10 +47,10 @@ func update_velocity(delta_: float) -> void:
 	previous_direction != move_direction
 	
 	var target_position = global_position + velocity * delta_ - level.position
-	var target_tile_coords = level.ground_tilemap.local_to_map(target_position)
+	var target_tile_coords = level.grass_tilemap.local_to_map(target_position)
 	
 	#Check if the target tile is walkable
-	var tile_id = level.ground_tilemap.get_cell_tile_data(target_tile_coords)
+	var tile_id = level.grass_tilemap.get_cell_tile_data(target_tile_coords)
 	var walkable_flag = false
 	
 	if tile_id != null:
@@ -62,7 +69,7 @@ func update_velocity(delta_: float) -> void:
 func set_current_jump_cell(start_coord_: Vector2i, move_direction_: Vector2) -> void:
 	for _i in level.jump_cell_distance:
 		var next_coord = start_coord_ + Vector2i(move_direction_) * _i
-		var tile_id = level.ground_tilemap.get_cell_tile_data(next_coord)
+		var tile_id = level.grass_tilemap.get_cell_tile_data(next_coord)
 		var jumpable_flag = false
 		
 		if tile_id != null:
@@ -78,8 +85,8 @@ func set_current_jump_cell(start_coord_: Vector2i, move_direction_: Vector2) -> 
 			if current_jump_cell != next_coord:
 				current_jump_cell = next_coord
 				
-				var local_position = level.ground_tilemap.map_to_local(current_jump_cell)
-				level.jump_cell.position = level.ground_tilemap.to_global(local_position) - level.position - level.jump_cell.size * 0.5
+				var local_position = level.grass_tilemap.map_to_local(current_jump_cell)
+				level.jump_cell.position = level.grass_tilemap.to_global(local_position) - level.position - level.jump_cell.size * 0.5
 			return
 	
 func start_jump() -> void:
@@ -89,16 +96,27 @@ func start_jump() -> void:
 		is_jumping = true
 		var jump_vector = level.jump_cell.position + level.TILE_SIZE * 0.5
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "position", jump_vector, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(self, "position", jump_vector, jump_time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		%AudioJump.play()
-		#tween.tween_callback(self.queue_free)
+		
+		#Pre-landing animation
+		await get_tree().create_timer(jump_time - extinction_delay_time).timeout 
+		$SmokeSprite.visible = true
+		$SmokeAnimationPlayer.play("extinction")
+		await $SmokeAnimationPlayer.animation_finished
+		$SmokeSprite.visible = false
+		is_extinction = true
+		await get_tree().create_timer(extinction_invulnerability_delay).timeout 
+		is_extinction = false
 	
 func end_jump() -> void:
 	is_jumping = false
 	animations.play("RESET")
 	
+func play_footstep() -> void:
+	FootstepSoundManager.play_footstep(global_position)
+	
 func _input(event) -> void:
 	if event is InputEventKey:
-		match event.keycode:
-			KEY_SPACE:
-				start_jump()
+		if event.is_action("jump"):
+			start_jump()

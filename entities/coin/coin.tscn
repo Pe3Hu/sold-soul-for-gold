@@ -1,9 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqg8fn7s7lsv2"]
+[gd_scene load_steps=12 format=3 uid="uid://bqg8fn7s7lsv2"]
 
-[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/Shadow.png" id="1_ciy41"]
+[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/shadow.png" id="1_ciy41"]
 [ext_resource type="Script" uid="uid://chi8t31tb40de" path="res://entities/coin/coin.gd" id="1_tvniy"]
 [ext_resource type="Texture2D" uid="uid://dmit840w63i1h" path="res://assets/images/sprites/coin.png" id="2_tvniy"]
+[ext_resource type="Shader" uid="uid://wuu7c6hnbsgd" path="res://shaders/sparkling star highlight.gdshader" id="2_yd0og"]
 [ext_resource type="AudioStream" uid="uid://btt22yt38nrgn" path="res://assets/sounds/coin.wav" id="4_sogop"]
+[ext_resource type="Texture2D" uid="uid://koaihkqcx25t" path="res://assets/images/shine.png" id="5_5wv18"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5wv18"]
+shader = ExtResource("2_yd0og")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/alpha = -0.5
+shader_parameter/shney_disperse = 10.0
+shader_parameter/shney_speed = 1.5000000712500001
+shader_parameter/twist_speed = 1.0
+shader_parameter/rota_speed = 2.5000005937500003
+shader_parameter/curve_ci = 0.3
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sogop"]
 radius = 6.0
@@ -47,6 +59,13 @@ _data = {
 
 [node name="Coin" type="Area2D"]
 script = ExtResource("1_tvniy")
+metadata/_edit_horizontal_guides_ = [-10.0]
+
+[node name="ShineSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5wv18")
+position = Vector2(0, -4)
+scale = Vector2(4, 4)
+texture = ExtResource("5_5wv18")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
@@ -70,4 +89,8 @@ libraries = {
 unique_name_in_owner = true
 stream = ExtResource("4_sogop")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-5, -9, 10, 9)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

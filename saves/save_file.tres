@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SaveDataResource" load_steps=2 format=3 uid="uid://dmywgq2772prl"]
+
+[ext_resource type="Script" uid="uid://c0bqwh1uystq5" path="res://resources/save_data.gd" id="1_wwt00"]
+
+[resource]
+script = ExtResource("1_wwt00")
+cage_coords = Array[Vector2i]([Vector2i(18, 22), Vector2i(23, 27)])
+coin_positions = Array[Vector2]([Vector2(376, 440), Vector2(40, 136), Vector2(360, 72)])
+enemies_types = Array[String](["golden", "golden", "silver", "silver", "silver", "silver", "silver", "silver", "silver"])
+enemies_states = Array[int]([4, 4, 3, 3, 3, 3, 3, 3, 3])
+enemies_current_positions = Array[Vector2]([Vector2(395.72894, 8.651525), Vector2(203.06505, 243.08894), Vector2(94.62215, 377.4994), Vector2(470.79385, 135.93884), Vector2(84.81545, 259.19638), Vector2(460.805, 43.182354), Vector2(318.87222, 249.63336), Vector2(107.75718, 327.94827), Vector2(308.63348, 430.95197)])
+enemies_spawn_positions = Array[Vector2]([Vector2(392, 56), Vector2(232, 280), Vector2(136, 360), Vector2(472, 88), Vector2(56, 296), Vector2(424, 72), Vector2(280, 248), Vector2(152, 328), Vector2(312, 472)])
+enemies_milestones_positions = [Array[Vector2]([Vector2(5.7236214, -57.349083)]), Array[Vector2]([Vector2(-44.379814, -46.44905)]), Array[Vector2]([Vector2(-93.557014, 63.616707), Vector2(93.557014, -63.616707)]), Array[Vector2]([Vector2(0.8200005, 113.1341), Vector2(-0.8200005, -113.1341)]), Array[Vector2]([Vector2(76.840485, -83.03938), Vector2(-76.840485, 83.03938)]), Array[Vector2]([Vector2(103.09531, -46.59783), Vector2(-103.09531, 46.59783)]), Array[Vector2]([Vector2(101.895744, 49.16561), Vector2(-101.895744, -49.16561)]), Array[Vector2]([Vector2(-111.76124, -17.590485), Vector2(111.76124, 17.590485)]), Array[Vector2]([Vector2(-46.748966, -103.026855), Vector2(46.748966, 103.026855)])]
+player_position = Vector2(296, 360)
+seed_index = -1329785935

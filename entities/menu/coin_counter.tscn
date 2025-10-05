@@ -1,9 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi76d58nko2mi"]
+[gd_scene load_steps=7 format=3 uid="uid://bi76d58nko2mi"]
 
 [ext_resource type="Script" uid="uid://bd2hsnmec8plk" path="res://entities/menu/coin_counter.gd" id="1_fxfjk"]
 [ext_resource type="Texture2D" uid="uid://huacyikh4t6i" path="res://assets/images/ui/icon/coin counter.png" id="1_hie23"]
-[ext_resource type="FontFile" uid="uid://sf7jw4oqaet4" path="res://assets/fonts/letter/NormalFont.ttf" id="3_vlmds"]
+[ext_resource type="Shader" uid="uid://c2qwj4d0e1sxi" path="res://shaders/shine highlight.gdshader" id="2_5rosu"]
+[ext_resource type="Texture2D" uid="uid://koaihkqcx25t" path="res://assets/images/shine.png" id="4_3tmp1"]
 [ext_resource type="AudioStream" uid="uid://c2hvl8aomlmm3" path="res://assets/sounds/win.wav" id="4_5rosu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5rosu"]
+shader = ExtResource("2_5rosu")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = -19.999996675000006
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.5
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+shader_parameter/surface = ExtResource("1_hie23")
 
 [node name="CoinCounter" type="MarginContainer"]
 anchors_preset = 1
@@ -26,15 +41,33 @@ theme_override_constants/separation = 8
 alignment = 1
 
 [node name="CoinTextureRect" type="TextureRect" parent="CoinHBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("1_hie23")
+
+[node name="ShineTextureRect" type="TextureRect" parent="CoinHBoxContainer/CoinTextureRect"]
+material = SubResource("ShaderMaterial_5rosu")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_3tmp1")
 
 [node name="CoinLabel" type="Label" parent="CoinHBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_vlmds")
+theme_override_font_sizes/font_size = 30
 text = "0/4"
 
 [node name="AudioWin" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_5rosu")
+
+[node name="ShineTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ShineTimer" to="." method="_on_shine_timer_timeout"]

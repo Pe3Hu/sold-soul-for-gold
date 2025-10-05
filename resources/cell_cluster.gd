@@ -1,15 +1,15 @@
-class_name CellClusterResource
+class_name CoordClusterResource
 extends Resource
 
 
-var cells: Array[Vector2i]
+var coords: Array[Vector2i]
 
 
-func _init(start_cell_: Vector2i) -> void:
-	cells.append(start_cell_)
+func _init(start_coord_: Vector2i) -> void:
+	coords.append(start_coord_)
 	
-func merge_with(cell_to_clusters_: Dictionary, cluster_: CellClusterResource) -> void:
-	cells.append_array(cluster_.cells)
+func merge_with(coord_to_clusters_: Dictionary, cluster_: CoordClusterResource) -> void:
+	coords.append_array(cluster_.coords)
 	
-	for cell in cluster_.cells:
-		cell_to_clusters_[cell] = self
+	for coord in cluster_.coords:
+		coord_to_clusters_[coord] = self

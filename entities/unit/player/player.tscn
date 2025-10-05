@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck2e8j7awyhqk"]
+[gd_scene load_steps=18 format=3 uid="uid://ck2e8j7awyhqk"]
 
 [ext_resource type="Script" uid="uid://gxpgx8hkj1rg" path="res://entities/unit/player/player.gd" id="1_bffth"]
-[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/Shadow.png" id="2_8ev0q"]
+[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/shadow.png" id="2_8ev0q"]
 [ext_resource type="Texture2D" uid="uid://wnbdwevcankt" path="res://assets/images/sprites/player.png" id="2_ud2ev"]
+[ext_resource type="Texture2D" uid="uid://xey07ahi54s1" path="res://assets/images/sprites/smoke.png" id="3_pa4sa"]
 [ext_resource type="AudioStream" uid="uid://cn6pgnvefcv2h" path="res://assets/sounds/jump.wav" id="4_siiy4"]
-[ext_resource type="AudioStream" uid="uid://2oxdtmn46cd0" path="res://assets/sounds/grass 1.wav" id="5_ctd7j"]
-[ext_resource type="AudioStream" uid="uid://barnpp7okme57" path="res://assets/sounds/grass 2.wav" id="6_pa4sa"]
+[ext_resource type="AudioStream" uid="uid://c5int7wy81rma" path="res://assets/sounds/grass 1.wav" id="5_ctd7j"]
+[ext_resource type="AudioStream" uid="uid://cs5k2wrq8vu4i" path="res://assets/sounds/grass 2.wav" id="6_pa4sa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5idxs"]
 size = Vector2(14, 4)
@@ -70,6 +71,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_fw77w"]
 resource_name = "walkLeft"
@@ -86,6 +104,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_eiiim"]
@@ -104,6 +139,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_sinjt"]
 resource_name = "walkUp"
@@ -121,6 +173,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_80d3x"]
 _data = {
@@ -132,6 +201,27 @@ _data = {
 &"walkUp": SubResource("Animation_sinjt")
 }
 
+[sub_resource type="Animation" id="Animation_pa4sa"]
+resource_name = "extinction"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SmokeSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hkube"]
+_data = {
+&"extinction": SubResource("Animation_pa4sa")
+}
+
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_bffth")
@@ -139,6 +229,11 @@ script = ExtResource("1_bffth")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_5idxs")
+
+[node name="SmokeSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_pa4sa")
+hframes = 8
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_8ev0q")
@@ -152,6 +247,11 @@ vframes = 7
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_80d3x")
+}
+
+[node name="SmokeAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hkube")
 }
 
 [node name="Timer" type="Timer" parent="."]

@@ -30,6 +30,7 @@ enum State {MAIN,PAUSE,RESTART}
 
 
 func _ready() -> void:
+	SaveManager._load()
 	update_buttons()
 	reset_inital_sliders()
 	world.is_pause = true
@@ -41,9 +42,9 @@ func reset_inital_sliders() -> void:
 func update_buttons() -> void:
 	reset_buttons()
 	var visible_buttons = {}
-	visible_buttons[State.MAIN] = ["Start", "Options", "Quit"]
-	visible_buttons[State.PAUSE] = ["Resume", "Restart", "Quit"]
-	visible_buttons[State.RESTART] = ["Restart", "Options", "Quit"]
+	visible_buttons[State.MAIN] = ["Start"]
+	visible_buttons[State.PAUSE] = ["Resume", "Restart",]
+	visible_buttons[State.RESTART] = ["Restart"]
 	
 	for type in visible_buttons[current_state]:
 		var path = "%" + type + "Button"#"$Buttons/" + 
@@ -59,26 +60,10 @@ func reset_buttons() -> void:
 	for button in %ButtonsVBox.get_children():
 		button.visible = false
 	
-func _on_exit_options_button_pressed() -> void:
-	%OptionsPanel.visible = false
-	%ButtonsPanel.visible = true
-	
-func _on_hell_mode_check_button_pressed() -> void:
-	world.is_enemy_guarding_coin = !world.is_enemy_guarding_coin
-	
-func _on_options_button_pressed() -> void:
-	%ButtonsPanel.visible = false
-	%OptionsPanel.visible = true
-	
-func _on_start_button_pressed() -> void:
-	start_gameplay()
-	
-func _on_restart_button_pressed() -> void:
-	coin_counter.current_value = 0
-	start_gameplay()
-	
-func _on_resume_button_pressed() -> void:
-	continue_gameplay()
+	%OptionsButton.visible = true
+	%QuitButton.visible = true
+	%SaveButton.visible = world.is_map_generated
+	%LoadButton.visible = !SaveManager.save_file_data.coin_positions.is_empty()
 	
 func continue_gameplay() -> void:
 	world.phantom_camera.teleport_position()
@@ -89,6 +74,7 @@ func continue_gameplay() -> void:
 	%CoinCounter.visible = true
 	
 func start_gameplay() -> void:
+	%CongratulationTextureRect.visible = false
 	world.reset()
 	continue_gameplay()
 	
@@ -108,13 +94,49 @@ func set_on_restart() -> void:
 	#%BackgroundPanel.visible = true
 	update_buttons()
 	
+func _on_exit_options_button_pressed() -> void:
+	%OptionsPanel.visible = false
+	%ButtonsPanel.visible = true
+	
+func _on_hell_mode_check_button_pressed() -> void:
+	world.is_enemy_guarding_coin = !world.is_enemy_guarding_coin
+	
+func _on_options_button_pressed() -> void:
+	%ButtonsPanel.visible = false
+	%OptionsPanel.visible = true
+	
+func _on_start_button_pressed() -> void:
+	start_gameplay()
+	
+func _on_restart_button_pressed() -> void:
+	world.is_loading = false
+	coin_counter.current_value = 0
+	start_gameplay()
+	
+func _on_resume_button_pressed() -> void:
+	continue_gameplay()
+	
+func _on_save_button_pressed() -> void:
+	world.save_game()
+	update_buttons()
+	
+func _on_load_button_pressed() -> void:
+	world.is_loading = true
+	SaveManager._load()
+	start_gameplay()
+	
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 	
 func _on_coins_collected() -> void:
 	world.is_win = true
+	%CongratulationTextureRect.visible = true
+	%CongratulationTextureRect.material.set_shader_parameter("NOISE_magnitude", Color.from_hsv(60, 60, 100))
+	%CongratulationTextureRect.material.set_shader_parameter("NOISE_magnitude", 0)
 	set_on_restart()
 	
 func _on_mission_failed() -> void:
 	set_on_restart()
-	
+	%CongratulationTextureRect.visible = true
+	%CongratulationTextureRect.material.set_shader_parameter("NOISE_magnitude", Color.WHITE)
+	%CongratulationTextureRect.material.set_shader_parameter("NOISE_magnitude", 0.7)

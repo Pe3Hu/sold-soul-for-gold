@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cu2ls4hwd0byj" path="res://entities/unit/unit.gd" id="1_tkh0x"]
 [ext_resource type="Texture2D" uid="uid://wnbdwevcankt" path="res://assets/images/sprites/player.png" id="2_1bv0a"]
-[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/Shadow.png" id="2_p0kfm"]
+[ext_resource type="Texture2D" uid="uid://ch4plhhirat8u" path="res://assets/images/shadow.png" id="2_p0kfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5idxs"]
 size = Vector2(14, 4)

@@ -1,27 +1,18 @@
-res://entities/world/world.tscn
+res://entities/menu/menu.tscn
 res://addons/phantom_camera/themes/theme.tres
 res://shaders/wind waker water.gdshader
 res://shaders/jump cell square.gdshader
+res://shaders/congratulation.gdshader
+res://shaders/shine highlight.gdshader
 res://shaders/jump cell circle.gdshader
+res://shaders/sparkling star highlight.gdshader
+res://resources/save_data.gd
 res://entities/world/world.gd
-res://entities/unit/player/player.gd
-res://entities/unit/enemy/enemy.gd
-res://entities/unit/unit.gd
-res://entities/menu/option_parameter.tscn
-res://entities/menu/option_parameter.gd
 res://entities/menu/menu.gd
 res://entities/level/level_1.gd
-res://entities/menu/menu.tscn
+res://entities/save_manager.gd
+res://saves/save_file.tres
+res://entities/unit/player/player.gd
+res://entities/unit/enemy/enemy.gd
 res://entities/unit/enemy/enemy.tscn
-res://entities/level/level_1.tscn
-res://entities/coin/coin.tscn
-res://entities/coin/coin.gd
-res://entities/menu/coin_counter.gd
-res://entities/menu/tooltip.tscn
-res://entities/menu/options/tooltip.tscn
-res://entities/menu/options/option_parameter.tscn
-res://entities/menu/options/option_parameter.gd
-res://entities/menu/options/tooltip.gd
-res://entities/menu/hell_mode_check_button.gd
-res://entities/menu/coin_counter.tscn
 res://entities/unit/player/player.tscn

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbkrytwa7t2du"]
 
 [ext_resource type="Texture2D" uid="uid://c8yhwnphyk2k8" path="res://assets/images/ui/nine patch/main_bg_panel.png" id="1_l3f3j"]
-[ext_resource type="FontFile" uid="uid://sf7jw4oqaet4" path="res://assets/fonts/letter/NormalFont.ttf" id="2_gi6ax"]
+[ext_resource type="FontFile" uid="uid://dju2lhyn0q2qc" path="res://assets/fonts/GothicPixels.ttf" id="2_gi6ax"]
 [ext_resource type="Script" uid="uid://ciu1qxepwn41m" path="res://entities/menu/options/tooltip.gd" id="2_vlvqs"]
 
 [node name="Tooltip" type="NinePatchRect"]

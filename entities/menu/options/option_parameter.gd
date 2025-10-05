@@ -22,8 +22,8 @@ extends HBoxContainer
 
 
 func _ready() -> void:
-	mouse_entered.connect(on_mouse_entered)
-	mouse_exited.connect(on_mouse_exit)
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exit)
 	
 func inital_reset() -> void:
 	%HSlider.value += 1
@@ -56,8 +56,8 @@ func _on_h_slider_value_changed(value_: float) -> void:
 		"player speed":
 			menu.world.player_speed = value_
 
-func on_mouse_entered() -> void:
+func _on_mouse_entered() -> void:
 	%Tooltip.toggle(true)
 	
-func on_mouse_exit() -> void:
+func _on_mouse_exit() -> void:
 	%Tooltip.toggle(false)

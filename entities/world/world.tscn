@@ -34,8 +34,8 @@ level = NodePath("../Level1")
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
 physics_interpolation_mode = 1
-position = Vector2(278, 152)
-zoom = Vector2(2, 2)
+position = Vector2(182, -98)
+zoom = Vector2(3, 3)
 limit_left = -10
 limit_top = -10
 limit_right = 10
@@ -48,11 +48,11 @@ script = ExtResource("4_db8ab")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(278, 152)
+position = Vector2(182, -98)
 script = ExtResource("5_hl0m3")
 follow_mode = 5
 follow_target = NodePath("../Player")
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 tween_resource = SubResource("Resource_rxgam")
 tween_on_load = false
 follow_damping = true

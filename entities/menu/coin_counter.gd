@@ -2,6 +2,9 @@ class_name CoinCounter
 extends MarginContainer
 
 
+const SHINE_TIME = 1.0
+
+
 @export var menu: Menu
 @export var current_value: int = 0:
 	set(value_):

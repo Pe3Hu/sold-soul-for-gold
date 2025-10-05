@@ -1,4 +1,5 @@
 shader_type canvas_item;
+
 uniform vec4 color = vec4(1.0);
 uniform float diameter = 1.0; // Circle Diameter
 uniform float thickness = 0.05; // Outline thickness

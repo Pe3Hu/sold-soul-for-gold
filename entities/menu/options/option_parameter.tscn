@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjckp0l5th73i" path="res://entities/menu/options/option_parameter.gd" id="1_8jkgo"]
 [ext_resource type="Texture2D" uid="uid://huacyikh4t6i" path="res://assets/images/ui/icon/coin counter.png" id="2_jx25b"]
-[ext_resource type="FontFile" uid="uid://sf7jw4oqaet4" path="res://assets/fonts/letter/NormalFont.ttf" id="3_x4se3"]
+[ext_resource type="FontFile" uid="uid://dju2lhyn0q2qc" path="res://assets/fonts/GothicPixels.ttf" id="3_x4se3"]
 [ext_resource type="Texture2D" uid="uid://c8yhwnphyk2k8" path="res://assets/images/ui/nine patch/main_bg_panel.png" id="4_utowc"]
 [ext_resource type="Texture2D" uid="uid://buxblpkngl4yl" path="res://assets/images/ui/slider/h_slidder_grabber.png" id="5_6xw7o"]
 [ext_resource type="Texture2D" uid="uid://chv0xxm0e7kv4" path="res://assets/images/ui/slider/h_slidder_grabber_hover.png" id="6_8eoqc"]

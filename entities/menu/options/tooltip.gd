@@ -27,7 +27,6 @@ func toggle(on_: bool) -> void:
 		await tween_opacity(0.0).finished
 		hide()
 	
-	
 func tween_opacity(to_: float):
 	if opacity_tween: opacity_tween.kill()
 	
